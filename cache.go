@@ -35,7 +35,7 @@ func (c *cache) get(key string) (value ByteView, ok bool) {
 	return
 }
 
-func (c *cache) remove() {
+func (c *cache) removeOldest() {
 	c.mu.Lock()
 	defer c.mu.Unlock()
 
