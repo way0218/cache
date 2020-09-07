@@ -34,3 +34,14 @@ func (c *cache) get(key string) (value ByteView, ok bool) {
 
 	return
 }
+
+func (c *cache) remove() {
+	c.mu.Lock()
+	defer c.mu.Unlock()
+
+	if c.lru == nil {
+		return
+	}
+
+	c.lru.RemoveOldest()
+}
